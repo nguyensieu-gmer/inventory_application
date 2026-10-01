@@ -1,0 +1,12 @@
+<div>
+    <% if (result.length === 0){%>
+        <h1>not found such author or book as '<%= query%>'</h1>
+    <%} else {%>
+        <h1>Search result</h1>
+        <ul>
+            <% result.map(book => {%>
+                <li><%= book.book_name%> '<i><%= book.author_name%></i>'</li>
+            <%})%>
+        </ul>
+    <%}%> 
+</div>

@@ -49,9 +49,23 @@ async function getGenreOfBook(id) {
   return rows;
 }
 
+async function search(query) {
+  const { rows } = await pool.query(
+    `
+    SELECT book_name, author_name
+    FROM books JOIN authors ON books.author_id = authors.id
+    WHERE book_name ILIKE $1 OR author_name ILIKE $1
+    `,
+    [`%${query}%`],
+  );
+
+  return rows;
+}
+
 module.exports = {
   getBooks,
   getAuthors,
   getGenreOfBook,
   getBookAndAuthor,
+  search,
 };

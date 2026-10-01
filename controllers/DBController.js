@@ -19,7 +19,14 @@ async function getDetailOfBook(req, res) {
   });
 }
 
+async function search(req, res) {
+  const query = req.query.search_result;
+  const result = await db.search(query);
+  res.render("search", { query, result });
+}
+
 module.exports = {
   getHome,
   getDetailOfBook,
+  search,
 };

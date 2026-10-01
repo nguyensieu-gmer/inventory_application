@@ -6,6 +6,15 @@
     <title>Document</title>
   </head>
   <body>
+    <form action="/search" method="get">
+      <label for="search">Search Books</label>
+      <input type="text" name="search_result" id="search" style="width: 15rem;" placeholder="name of book or name of author">
+      <button type="submit">Search</button>
+    </form>
+    <br>
+    <div>
+      <a href="/new">Add new book</a>
+    </div>
     <h1>Books</h1>
     <% if (locals.books){%>
       <% books.map(book => {%>
