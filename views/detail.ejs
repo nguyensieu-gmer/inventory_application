@@ -1,0 +1,9 @@
+<div>
+  <h1><%= bookName%> '<i><%= authorName%></i>'</h1>
+  <h2>Genres</h2>
+  <ul>
+    <% listOfGenre.map(genre => {%>
+      <li><%= genre.genre_name%></li>
+    <% })%>
+  </ul>
+</div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Books</h1>
+    <% if (locals.books){%>
+      <% books.map(book => {%>
+          <li><%= book.book_name%></li>
+          <a style="display: inline;" href="/detail/<%= book.id%>">details</a>
+      <%})%>
+    <%}%>
+    <h1>Authors</h1>
+    <% if (locals.authors){%>
+      <% authors.map(author => {%>
+          <li><%= author.author_name%></li>
+      <%})%>
+    <%}%>
+  </body>
+</html>
