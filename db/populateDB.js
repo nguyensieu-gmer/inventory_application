@@ -5,52 +5,52 @@ loadEnvFile();
 const BOOKS_SQL = `
 CREATE TABLE IF NOT EXISTS books(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    bookName VARCHAR(255),
-    authorId INTEGER
+    book_name VARCHAR(255),
+    author_id INTEGER
 )
 `;
 
 const AUTHOR_SQL = `
 CREATE TABLE IF NOT EXISTS authors(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    authorName VARCHAR(255)
+    author_name VARCHAR(255)
 )
 `;
 
 const GENRE_SQL = `
 CREATE TABLE IF NOT EXISTS genres(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    genreName VARCHAR(255)
+    genre_name VARCHAR(255)
 )
 `;
 
 const BOOKS_GENRES_SQL = `
 CREATE TABLE IF NOT EXISTS books_genres(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    bookId INTEGER,
-    genreId INTEGER
+    book_id INTEGER,
+    genre_id INTEGER
 )
 `;
 
 const INSERT_BOOKS = `
-INSERT INTO books(bookName, authorId) VALUES
+INSERT INTO books(book_name, author_id) VALUES
 ('Hary Poter', 1), ('The adventure of Tom Sawyer', 2)
 `;
 
 const INSERT_AUTHOR = `
-INSERT INTO authors(authorName) VALUES
+INSERT INTO authors(author_name) VALUES
 ('JK Rowling'), ('Mark Twain')
 `;
 
 const INSERT_GENRE = `
-INSERT INTO genres(genreName) VALUES
+INSERT INTO genres(genre_name) VALUES
 ('Mystery'), ('Boarding school fiction'), ('Comming-of-age'),
 ('Adventure & Thriller'), ('Adventure'), ('Satire & Humor'), 
 ('Picaresque & Folk Narritive')
 `;
 
 const INSERT_BOOKS_GENRES = `
-INSERT INTO books_genres(bookId, genreId) VALUES 
+INSERT INTO books_genres(book_id, genre_id) VALUES 
 (1, 1), (1, 2), (1, 3), (1, 4),
 (2, 5), (2, 3), (2, 6), (2, 7)
 `;
