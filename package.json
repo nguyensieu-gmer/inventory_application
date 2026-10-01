@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "node --watch app.js"
+    "watch": "node --watch app.js",
+    "query": "node db/queries.js"
   },
   "repository": {
     "type": "git",
