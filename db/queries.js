@@ -53,4 +53,5 @@ module.exports = {
   getBooks,
   getAuthors,
   getGenreOfBook,
+  getBookAndAuthor,
 };
