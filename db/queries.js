@@ -52,7 +52,7 @@ async function getGenreOfBook(id) {
 async function search(query) {
   const { rows } = await pool.query(
     `
-    SELECT book_name, author_name
+    SELECT books.id, book_name, author_name
     FROM books JOIN authors ON books.author_id = authors.id
     WHERE book_name ILIKE $1 OR author_name ILIKE $1
     `,

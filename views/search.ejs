@@ -5,7 +5,7 @@
         <h1>Search result</h1>
         <ul>
             <% result.map(book => {%>
-                <li><%= book.book_name%> '<i><%= book.author_name%></i>'</li>
+                <li><%= book.book_name%> '<i><%= book.author_name%></i>' <a href="/detail/<%= book.id%>">details</a></li>
             <%})%>
         </ul>
     <%}%> 
