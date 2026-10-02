@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 async function getBooks() {
   const { rows } = await pool.query(`
-    SELECT book_name, id
+    SELECT id, book_name
     FROM books 
     `);
   return rows;
@@ -10,7 +10,7 @@ async function getBooks() {
 
 async function getAuthors() {
   const { rows } = await pool.query(`
-    SELECT author_name 
+    SELECT id, author_name 
     FROM authors 
     `);
 
@@ -19,7 +19,7 @@ async function getAuthors() {
 
 async function getGenre() {
   const { rows } = await pool.query(`
-    SELECT genre_name
+    SELECT id, genre_name
     FROM genres
     `);
   return rows;
@@ -62,10 +62,89 @@ async function search(query) {
   return rows;
 }
 
+async function insertNewBook(book_name, author_id) {
+  await pool.query(
+    `
+    INSERT INTO books(book_name, author_id) VALUES ($1, $2)
+    ON CONFLICT (book_name) DO NOTHING
+    `,
+    [book_name, author_id],
+  );
+}
+
+async function insertNewAuthor(author_name) {
+  await pool.query(
+    `
+    INSERT INTO authors(author_name) VALUES($1)
+    ON CONFLICT (author_name) DO NOTHING
+    `,
+    [author_name],
+  );
+}
+
+async function insertNewGenre(genre_name) {
+  await pool.query(
+    `
+    INSERT INTO genres(genre_name) VALUES($1)
+    ON CONFLICT (genre_name) DO NOTHING
+    `,
+    [genre_name],
+  );
+}
+
+async function getAuthorIdByName(author_name) {
+  const { rows } = await pool.query(
+    `
+    SELECT id FROM authors WHERE author_name = $1
+    `,
+    [author_name],
+  );
+  const [{ id }] = rows;
+  return id;
+}
+
+async function getBookIdByName(book_name) {
+  const { rows } = await pool.query(
+    `
+    SELECT id FROM books WHERE book_name = $1
+    `,
+    [book_name],
+  );
+  const [{ id }] = rows;
+  return id;
+}
+
+async function getGenreIdByName(genreList) {
+  const { rows } = await pool.query(
+    `
+    SELECT id FROM genres WHERE genre_name = ANY($1)
+    `,
+    [genreList],
+  );
+  const idList = rows.map((row) => row.id);
+  return idList;
+}
+
+async function insertBookAndGenre(book_id, genre_id) {
+  await pool.query(
+    `
+    INSERT INTO books_genres VALUES($1, $2)
+    `,
+    [book_id, genre_id],
+  );
+}
+
 module.exports = {
   getBooks,
   getAuthors,
   getGenreOfBook,
   getBookAndAuthor,
   search,
+  insertNewBook,
+  insertNewAuthor,
+  insertNewGenre,
+  getAuthorIdByName,
+  getBookIdByName,
+  getGenreIdByName,
+  insertBookAndGenre,
 };
