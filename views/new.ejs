@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <a href="/">go home</a>
+      <br />
+      <%- include('partials/errors.ejs')%>
+      <br />
+      <em>Carefully validating can help prevent duplicate records</em>
+      <form action="/new" method="post">
+        <label for="book_name">Book: </label>
+        <input type="text" name="book_name" id="book_name" />
+        <br />
+        <br />
+        <label for="author_name">Author: </label>
+        <input type="text" name="author_name" id="author_name" />
+        <br />
+        <p>genres are seperated by empty space like: humor horror</p>
+        <label for="genre1">Genre 1: </label>
+        <input type="text" name="genre1" id="genre1" />
+        <br />
+        <label for="genre2">Genre 2: </label>
+        <input type="text" name="genre2" id="genre2" />
+        <br />
+        <label for="genre3">Genre 3: </label>
+        <input type="text" name="genre3" id="genre3" />
+        <br />
+        <label for="genre4">Genre 4: </label>
+        <input type="text" name="genre4" id="genre4" />
+        <br />
+        <label for="genre5">Genre 5: </label>
+        <input type="text" name="genre5" id="genre5" />
+        <p></p>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
