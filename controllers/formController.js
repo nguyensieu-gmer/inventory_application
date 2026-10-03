@@ -60,7 +60,7 @@ const postCreateBook = [
     const { book_name, author_name, genre1, genre2, genre3, genre4, genre5 } =
       matchedData(req);
     const genres = [genre1, genre2, genre3, genre4, genre5].filter(
-      (genre) => genre !== "",
+      (genre) => genre,
     );
     await insertInfors(book_name, author_name, genres);
     res.redirect("/");
