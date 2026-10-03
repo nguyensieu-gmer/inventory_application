@@ -17,18 +17,22 @@ const validated = [
     .isLength({ min: 1, max: 1000 })
     .withMessage(`Genre ${rules.lenError}`),
   body("genre2")
+    .optional({ values: "falsy" })
     .trim()
     .isLength({ min: 1, max: 1000 })
     .withMessage(`Genre ${rules.lenError}`),
   body("genre3")
+    .optional({ values: "falsy" })
     .trim()
     .isLength({ min: 1, max: 1000 })
     .withMessage(`Genre ${rules.lenError}`),
   body("genre4")
+    .optional({ values: "falsy" })
     .trim()
     .isLength({ min: 1, max: 1000 })
     .withMessage(`Genre ${rules.lenError}`),
   body("genre5")
+    .optional({ values: "falsy" })
     .trim()
     .isLength({ min: 1, max: 1000 })
     .withMessage(`Genre ${rules.lenError}`),
