@@ -1,23 +1,37 @@
 const { body, matchedData, validationResult } = require("express-validator");
 const db = require("../db/queries");
-
-const lenError = "must be more than 1 character";
-const alpError = "must only contain letters";
+const rules = require("../stringRules");
 
 const validated = [
   body("book_name")
     .trim()
     .isLength({ min: 1, max: 1000 })
-    .withMessage(`Book name ${lenError}`),
+    .withMessage(`Book name ${rules.lenError}`),
   body("author_name")
     .trim()
     .isLength({ min: 1, max: 1000 })
-    .withMessage(`Author name ${lenError}`),
-  body("genre1").trim(),
-  body("genre2").trim(),
-  body("genre3").trim(),
-  body("genre4").trim(),
-  body("genre5").trim(),
+    .withMessage(`Author name ${rules.lenError}`),
+  body("genre1")
+    .optional({ values: "falsy" })
+    .trim()
+    .isLength({ min: 1, max: 1000 })
+    .withMessage(`Genre ${rules.lenError}`),
+  body("genre2")
+    .trim()
+    .isLength({ min: 1, max: 1000 })
+    .withMessage(`Genre ${rules.lenError}`),
+  body("genre3")
+    .trim()
+    .isLength({ min: 1, max: 1000 })
+    .withMessage(`Genre ${rules.lenError}`),
+  body("genre4")
+    .trim()
+    .isLength({ min: 1, max: 1000 })
+    .withMessage(`Genre ${rules.lenError}`),
+  body("genre5")
+    .trim()
+    .isLength({ min: 1, max: 1000 })
+    .withMessage(`Genre ${rules.lenError}`),
 ];
 
 function getCreateBook(req, res) {
