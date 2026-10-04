@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <a href="/">go home</a>
+      <br />
+      <%- include('partials/errors.ejs')%>
+      <br />
+      <em>Carefully validating can help prevent duplicate records</em>
+      <form action="/update" method="post">
+        <label for="book_name">Book: </label>
+        <input
+          type="text"
+          name="book_name"
+          id="book_name"
+          value="<%= bookName%>"
+        />
+        <input type="hidden" name="book_id" value="<%= book_id%>">
+        <br />
+        <label for="author_name">Author: </label>
+        <input
+          type="text"
+          name="author_name"
+          id="author_name"
+          value="<%= authorName%>"
+        />
+        <input type="hidden" name="author_id" value="<%= author_id%>">
+        <br />
+        <p>genres are seperated by empty space like: humor horror</p>
+        <% listOfGenre.forEach((genre, idx) => {%>
+          <label for="<%= `genre${idx + 1}`%>">Genre <%= idx + 1%>: </label>
+          <input type="text" name="<%= `genre${idx + 1}`%>" id="<%= `genre${idx + 1}`%>" value="<%= genre.genre_name%>" />
+          <input type="hidden" name="<%= `genre${idx + 1}_id`%>" value='<%= genre.id%>'>
+          <br>
+        <%})%>
+        <input type="hidden" name="quantityOfGenres" value="<%= listOfGenre.length%>">
+        <p></p>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -18,7 +18,9 @@
     <h1>Books</h1>
     <% if (locals.books){%>
       <% books.map(book => {%>
-          <li><%= book.book_name%> <a href="/detail/<%= book.id%>">details</a></li>
+          <li><%= book.book_name%> <a href="/detail/<%= book.id%>">details</a>
+            <a href="/update/<%= book.id%>">update</a>
+          </li>
       <%})%>
     <%}%>
     <h1>Authors</h1>

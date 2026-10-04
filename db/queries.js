@@ -28,7 +28,7 @@ async function getGenre() {
 async function getBookAndAuthor(id) {
   const { rows } = await pool.query(
     `
-    SELECT author_name, book_name
+    SELECT books.id AS book_id, authors.id AS author_id, author_name, book_name
     FROM books JOIN authors ON books.author_id = authors.id
     WHERE books.id = $1
     `,
@@ -40,7 +40,7 @@ async function getBookAndAuthor(id) {
 async function getGenreOfBook(id) {
   const { rows } = await pool.query(
     `
-    SELECT genre_name
+    SELECT genres.id, genre_name
     FROM genres JOIN books_genres ON genres.id = books_genres.genre_id
     WHERE book_id = $1
     `,
@@ -134,6 +134,39 @@ async function insertBookAndGenre(book_id, genre_id) {
   );
 }
 
+async function updateBookNameById(newName, id) {
+  await pool.query(
+    `
+    UPDATE books
+    SET book_name = $1
+    WHERE id = $2
+    `,
+    [newName, id],
+  );
+}
+
+async function updateAuthorNameById(authorName, id) {
+  await pool.query(
+    `
+    UPDATE authors
+    SET author_name = $1
+    WHERE id = $2
+    `,
+    [authorName, id],
+  );
+}
+
+async function updateGenreNameById(genre, id) {
+  await pool.query(
+    `
+    UPDATE genres
+    SET genre_name = $1
+    WHERE id = $2
+    `,
+    [genre, id],
+  );
+}
+
 module.exports = {
   getBooks,
   getAuthors,
@@ -147,4 +180,7 @@ module.exports = {
   getBookIdByName,
   getGenreIdByName,
   insertBookAndGenre,
+  updateAuthorNameById,
+  updateBookNameById,
+  updateGenreNameById,
 };

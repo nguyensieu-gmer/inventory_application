@@ -6,6 +6,7 @@ const DBController = require("./controllers/DBController");
 const detailRoute = require("./routes/detailRoute");
 const searchRoute = require("./routes/searchRoute");
 const newRoute = require("./routes/newRoute");
+const updateRouter = require("./routes/updateRouter");
 loadEnvFile();
 
 app.set("views", path.join(__dirname, "views"));
@@ -16,6 +17,7 @@ app.get("/", DBController.getHome);
 app.use("/detail", detailRoute);
 app.use("/search", searchRoute);
 app.use("/new", newRoute);
+app.use("/update", updateRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {
