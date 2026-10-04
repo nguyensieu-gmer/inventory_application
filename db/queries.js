@@ -167,6 +167,25 @@ async function updateGenreNameById(genre, id) {
   );
 }
 
+async function deleteBook(id) {
+  await pool.query(
+    `
+    DELETE FROM books WHERE id = $1
+    `,
+    [id],
+  );
+}
+
+async function deleteAuthorNotHaveAnyBook(id) {
+  await pool.query(
+    `
+    DELETE FROM authors WHERE id = $1 AND 
+    id NOT IN (SELECT author_id FROM books)
+    `,
+    [id],
+  );
+}
+
 module.exports = {
   getBooks,
   getAuthors,
@@ -183,4 +202,6 @@ module.exports = {
   updateAuthorNameById,
   updateBookNameById,
   updateGenreNameById,
+  deleteBook,
+  deleteAuthorNotHaveAnyBook,
 };

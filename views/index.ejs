@@ -20,13 +20,20 @@
       <% books.map(book => {%>
           <li><%= book.book_name%> <a href="/detail/<%= book.id%>">details</a>
             <a href="/update/<%= book.id%>">update</a>
+            <form action="/delete/book/<%= book.id%>" method="post" style="display: inline-block;">
+              <button type="submit" onclick="return confirm('Are you sure to delete this book')">delete</button>
+            </form>
+            <p></p>
           </li>
       <%})%>
     <%}%>
     <h1>Authors</h1>
     <% if (locals.authors){%>
       <% authors.map(author => {%>
-          <li><%= author.author_name%></li>
+          <li><%= author.author_name%> <form style="display: inline-block;" action="/delete/author/<%= author.id%>" method="post" >
+            <button type="submit" onclick="return confirm('deleting can be fail if <%= author.author_name%> can have some books in library')">delete</button>
+          </form></li>
+          <p></p>
       <%})%>
     <%}%>
   </body>

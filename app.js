@@ -8,6 +8,7 @@ const searchRoute = require("./routes/searchRoute");
 const newRoute = require("./routes/newRoute");
 const updateRouter = require("./routes/updateRouter");
 const { copyFileSync } = require("node:fs");
+const deleteRouter = require("./routes/deleteRouter");
 loadEnvFile();
 
 app.set("views", path.join(__dirname, "views"));
@@ -19,6 +20,7 @@ app.use("/detail", detailRoute);
 app.use("/search", searchRoute);
 app.use("/new", newRoute);
 app.use("/update", updateRouter);
+app.use("/delete", deleteRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);

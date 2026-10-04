@@ -94,10 +94,22 @@ const postUpdate = [
   },
 ];
 
+async function postDeleteBook(req, res) {
+  await db.deleteBook(req.params.bookId);
+  res.redirect("/");
+}
+
+async function postDeleteAuthorNotHaveAnyBook(req, res) {
+  await db.deleteAuthorNotHaveAnyBook(req.params.authorId);
+  res.redirect("/");
+}
+
 module.exports = {
   getHome,
   getDetailOfBook,
   search,
   getUpdateOfBook,
   postUpdate,
+  postDeleteBook,
+  postDeleteAuthorNotHaveAnyBook,
 };
