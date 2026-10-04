@@ -1,6 +1,7 @@
 const db = require("../db/queries");
 const { body, matchedData, validationResult } = require("express-validator");
 const rules = require("../stringRules");
+const duplicateKeyValueError = require("../errors/duplicateKeyValueError");
 
 const updateValidation = [
   body("book_name")
@@ -69,22 +70,25 @@ async function search(req, res) {
 
 const postUpdate = [
   updateValidation,
-  async (req, res) => {
+  async (req, res, next) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
       return res.status(400).render("update", { errors: error.array() });
     }
     const results = matchedData(req);
-    console.log(results);
     // update
-    await db.updateBookNameById(results.book_name, results.book_id);
-    await db.updateAuthorNameById(results.author_name, results.author_id);
-    for (let i = 0; i < results.quantityOfGenres; i++) {
-      if (!results[`genre${i + 1}`]) continue;
-      await db.updateGenreNameById(
-        results[`genre${i + 1}`],
-        results[`genre${i + 1}_id`],
-      );
+    try {
+      await db.updateBookNameById(results.book_name, results.book_id);
+      await db.updateAuthorNameById(results.author_name, results.author_id);
+      for (let i = 0; i < results.quantityOfGenres; i++) {
+        if (!results[`genre${i + 1}`]) continue;
+        await db.updateGenreNameById(
+          results[`genre${i + 1}`],
+          results[`genre${i + 1}_id`],
+        );
+      }
+    } catch (err) {
+      throw new duplicateKeyValueError(err.detail);
     }
     res.redirect("/");
   },
