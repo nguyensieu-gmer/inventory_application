@@ -1,8 +1,9 @@
 const pool = require("./pool");
 
+// get
 async function getBooks() {
   const { rows } = await pool.query(`
-    SELECT id, book_name
+    SELECT id, book_name, book_url
     FROM books 
     `);
   return rows;
@@ -10,7 +11,7 @@ async function getBooks() {
 
 async function getAuthors() {
   const { rows } = await pool.query(`
-    SELECT id, author_name 
+    SELECT id, author_name, author_url
     FROM authors 
     `);
 
@@ -49,7 +50,18 @@ async function getGenreOfBook(id) {
   return rows;
 }
 
-async function search(query) {
+async function getGenreIdByName(genreList) {
+  const { rows } = await pool.query(
+    `
+    SELECT id FROM genres WHERE genre_name = ANY($1)
+    `,
+    [genreList],
+  );
+  const idList = rows.map((row) => row.id);
+  return idList;
+}
+
+async function searchBookAndAuthor(query) {
   const { rows } = await pool.query(
     `
     SELECT books.id, book_name, author_name
@@ -60,36 +72,6 @@ async function search(query) {
   );
 
   return rows;
-}
-
-async function insertNewBook(book_name, author_id) {
-  await pool.query(
-    `
-    INSERT INTO books(book_name, author_id) VALUES ($1, $2)
-    ON CONFLICT (book_name) DO NOTHING
-    `,
-    [book_name, author_id],
-  );
-}
-
-async function insertNewAuthor(author_name) {
-  await pool.query(
-    `
-    INSERT INTO authors(author_name) VALUES($1)
-    ON CONFLICT (author_name) DO NOTHING
-    `,
-    [author_name],
-  );
-}
-
-async function insertNewGenre(genre_name) {
-  await pool.query(
-    `
-    INSERT INTO genres(genre_name) VALUES($1)
-    ON CONFLICT (genre_name) DO NOTHING
-    `,
-    [genre_name],
-  );
 }
 
 async function getAuthorIdByName(author_name) {
@@ -114,15 +96,35 @@ async function getBookIdByName(book_name) {
   return id;
 }
 
-async function getGenreIdByName(genreList) {
-  const { rows } = await pool.query(
+// insert
+async function insertNewBook(book_name, author_id) {
+  await pool.query(
     `
-    SELECT id FROM genres WHERE genre_name = ANY($1)
+    INSERT INTO books(book_name, author_id) VALUES ($1, $2)
+    ON CONFLICT (book_name) DO NOTHING
     `,
-    [genreList],
+    [book_name, author_id],
   );
-  const idList = rows.map((row) => row.id);
-  return idList;
+}
+
+async function insertNewAuthor(author_name, author_url) {
+  await pool.query(
+    `
+    INSERT INTO authors(author_name, author_url) VALUES($1, $2)
+    ON CONFLICT (author_name) DO NOTHING
+    `,
+    [author_name, author_url],
+  );
+}
+
+async function insertNewGenre(genre_name) {
+  await pool.query(
+    `
+    INSERT INTO genres(genre_name) VALUES($1)
+    ON CONFLICT (genre_name) DO NOTHING
+    `,
+    [genre_name],
+  );
 }
 
 async function insertBookAndGenre(book_id, genre_id) {
@@ -134,6 +136,7 @@ async function insertBookAndGenre(book_id, genre_id) {
   );
 }
 
+// update
 async function updateBookNameById(newName, id) {
   await pool.query(
     `
@@ -167,6 +170,7 @@ async function updateGenreNameById(genre, id) {
   );
 }
 
+// delete
 async function deleteBook(id) {
   await pool.query(
     `
@@ -191,17 +195,20 @@ module.exports = {
   getAuthors,
   getGenreOfBook,
   getBookAndAuthor,
-  search,
-  insertNewBook,
-  insertNewAuthor,
-  insertNewGenre,
+  searchBookAndAuthor,
   getAuthorIdByName,
   getBookIdByName,
   getGenreIdByName,
+
+  insertNewBook,
+  insertNewAuthor,
+  insertNewGenre,
   insertBookAndGenre,
+
   updateAuthorNameById,
   updateBookNameById,
   updateGenreNameById,
+
   deleteBook,
   deleteAuthorNotHaveAnyBook,
 };
