@@ -1,7 +1,7 @@
 const express = require("express");
 const searchRoute = express();
-const DBController = require("../controllers/DBController");
+const searchController = require("../controllers/searchController");
 
-searchRoute.get("/", DBController.search);
+searchRoute.get("/", searchController.getSearch);
 
 module.exports = searchRoute;
