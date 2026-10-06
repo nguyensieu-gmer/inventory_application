@@ -1,11 +1,11 @@
 const express = require("express");
 const deleteRouter = express();
-const DBController = require("../controllers/DBController");
+const deleteController = require("../controllers/deleteController");
 
-deleteRouter.post("/book/:bookId", DBController.postDeleteBook);
+deleteRouter.post("/book/:bookId", deleteController.postDeleteBook);
 deleteRouter.post(
   "/author/:authorId",
-  DBController.postDeleteAuthorNotHaveAnyBook,
+  deleteController.postDeleteAuthorNotHaveAnyBook,
 );
 
 module.exports = deleteRouter;
