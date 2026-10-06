@@ -1,8 +1,8 @@
 const express = require("express");
 const updateRouter = express();
-const DBController = require("../controllers/DBController");
+const updateController = require("../controllers/updateController");
 
-updateRouter.get("/:bookId", DBController.getUpdateOfBook);
-updateRouter.post("/", DBController.postUpdate);
+updateRouter.get("/:bookId", updateController.getUpdateOfBook);
+updateRouter.post("/", updateController.postUpdate);
 
 module.exports = updateRouter;
