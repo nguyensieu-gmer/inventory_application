@@ -1,8 +1,16 @@
 const express = require("express");
 const newRoute = express();
-const formController = require("../controllers/formController");
+const newController = require("../controllers/newController");
+const upload = require("../upload");
 
-newRoute.get("/", formController.getCreateBook);
-newRoute.post("/", formController.postCreateBook);
+newRoute.get("/", newController.getCreateBook);
+newRoute.post(
+  "/",
+  upload.fields([
+    { name: "book_image", maxCount: 1 },
+    { name: "author_image", maxCount: 1 },
+  ]),
+  newController.postCreateBook,
+);
 
 module.exports = newRoute;
