@@ -1,12 +1,28 @@
-<div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
     <% if (result.length === 0){%>
         <h1>not found such author or book as '<%= query%>'</h1>
     <%} else {%>
         <h1>Search result</h1>
         <ul>
             <% result.map(book => {%>
-                <li><%= book.book_name%> '<i><%= book.author_name%></i>' <a href="/detail/<%= book.id%>">details</a></li>
+                <li>
+                    <img src="images/<%= book.book_url%>" alt="">
+                    <%= book.book_name%> <a href="/detail/<%= book.id%>">details</a></li>
+                    <img src="images/<%= book.author_url%>" alt="">
+                    <p>
+                        <%= book.author_name%>
+                    </p>
             <%})%>
         </ul>
     <%}%> 
 </div>
+</body>
+</html>

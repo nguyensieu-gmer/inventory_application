@@ -64,7 +64,7 @@ async function getGenreIdByName(genreList) {
 async function searchBookAndAuthor(query) {
   const { rows } = await pool.query(
     `
-    SELECT books.id, book_name, author_name
+    SELECT books.id, book_name, author_name, book_url, author_url
     FROM books JOIN authors ON books.author_id = authors.id
     WHERE book_name ILIKE $1 OR author_name ILIKE $1
     `,

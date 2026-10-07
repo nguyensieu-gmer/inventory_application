@@ -680,3 +680,287 @@ a:focus-visible {
     width: 100%;
   }
 }
+
+/* =========================================
+   SEARCH RESULT PAGE
+========================================= */
+
+.search_page {
+  min-height: 100vh;
+  padding: 2rem 3rem;
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+}
+
+/* Header */
+
+.search_header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.search_header h1 {
+  font-size: var(--bigger-font-size);
+  margin-bottom: 0.3rem;
+}
+
+.search_header p {
+  color: var(--color-text-secondary);
+}
+
+.search_header strong {
+  color: var(--color-text-accent);
+}
+
+/* Back button */
+
+.back_button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.7rem 1rem;
+
+  background-color: var(--color-text-main);
+  color: white;
+
+  border-radius: 8px;
+
+  font-weight: var(--font-semi-bold);
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.back_button i {
+  font-size: 1.2rem;
+}
+
+.back_button:hover {
+  background-color: var(--color-text-secondary);
+  transform: translateY(-2px);
+}
+
+/* Result grid */
+
+.result_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2rem;
+}
+
+/* Result card */
+
+.result_card {
+  display: flex;
+
+  background-color: var(--color-container);
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow: 2px 2px 10px 4px #d1670b35;
+
+  min-height: 20rem;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.result_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 2px 5px 15px 5px #d1670b50;
+}
+
+/* Book image */
+
+.result_book_image {
+  width: 40%;
+  min-width: 10rem;
+  overflow: hidden;
+}
+
+.result_book_image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.3s ease;
+}
+
+.result_card:hover .result_book_image img {
+  transform: scale(1.04);
+}
+
+/* Information */
+
+.result_information {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  padding: 1.5rem;
+}
+
+.result_information h2 {
+  font-size: var(--h2-font-size);
+  color: var(--color-text-main);
+
+  margin-bottom: 1.5rem;
+}
+
+/* Author */
+
+.author_information {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  margin-bottom: auto;
+}
+
+.author_information img {
+  width: 3rem;
+  height: 3rem;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+.author_information span {
+  display: block;
+
+  font-size: var(--small-font-size);
+
+  color: var(--color-text-accent);
+
+  margin-bottom: 0.1rem;
+}
+
+.author_information p {
+  font-weight: var(--font-semi-bold);
+  color: var(--color-text-secondary);
+}
+
+/* Details button */
+
+.details_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  width: 100%;
+
+  padding: 0.7rem 1rem;
+
+  margin-top: 1.5rem;
+
+  background-color: var(--color-text-main);
+  color: white;
+
+  border-radius: 7px;
+
+  font-weight: var(--font-semi-bold);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.details_button:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+/* Empty result */
+
+.empty_result {
+  max-width: 35rem;
+
+  margin: 5rem auto;
+
+  padding: 4rem 2rem;
+
+  text-align: center;
+
+  background-color: var(--color-container);
+
+  border-radius: 12px;
+
+  box-shadow: 2px 2px 10px 4px #d1670b30;
+}
+
+.empty_result > i {
+  font-size: 4rem;
+
+  color: var(--color-accent);
+
+  margin-bottom: 1rem;
+}
+
+.empty_result h2 {
+  margin-bottom: 0.5rem;
+}
+
+.empty_result p {
+  color: var(--color-text-secondary);
+
+  margin-bottom: 2rem;
+}
+
+.primary_button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.7rem 1.2rem;
+
+  background-color: var(--color-text-main);
+  color: white;
+
+  border-radius: 7px;
+
+  font-weight: var(--font-semi-bold);
+}
+
+.primary_button:hover {
+  background-color: var(--color-accent-hover);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+  .search_page {
+    padding: 1.5rem;
+  }
+
+  .search_header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .result_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result_card {
+    min-height: 18rem;
+  }
+
+  .result_book_image {
+    width: 35%;
+    min-width: 8rem;
+  }
+}

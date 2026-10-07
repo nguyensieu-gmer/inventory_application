@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Results</title>
+
+    <link rel="stylesheet" href="/styles.css">
+
+    <!-- Remix Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <div class="search_page">
+
+        <!-- Header -->
+        <header class="search_header">
+
+            <a href="/" class="back_button">
+                <i class="ri-arrow-left-line"></i>
+                Back to home
+            </a>
+
+            <div>
+                <h1>Search Results</h1>
+
+                <p>
+                    Results for:
+                    <strong>"<%= query %>"</strong>
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- Search results -->
+        <main class="search_content">
+
+            <% if (result.length === 0) { %>
+
+                <section class="empty_result">
+
+                    <i class="ri-search-line"></i>
+
+                    <h2>No results found</h2>
+
+                    <p>
+                        We couldn't find any author or book matching
+                        "<strong><%= query %></strong>".
+                    </p>
+
+                    <a href="/" class="primary_button">
+                        <i class="ri-home-line"></i>
+                        Go home
+                    </a>
+
+                </section>
+
+            <% } else { %>
+
+                <div class="result_grid">
+
+                    <% result.map(book => { %>
+
+                        <article class="result_card">
+
+                            <!-- Book image -->
+                            <div class="result_book_image">
+                                <img
+                                    src="/images/<%= book.book_url %>"
+                                    alt="<%= book.book_name %>"
+                                >
+                            </div>
+
+
+                            <!-- Book information -->
+                            <div class="result_information">
+
+                                <h2>
+                                    <%= book.book_name %>
+                                </h2>
+
+                                <div class="author_information">
+
+                                    <img
+                                        src="/images/<%= book.author_url %>"
+                                        alt="<%= book.author_name %>"
+                                    >
+
+                                    <div>
+                                        <span>Author</span>
+                                        <p>
+                                            <%= book.author_name %>
+                                        </p>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Actions -->
+                                <a
+                                    href="/detail/<%= book.id %>"
+                                    class="details_button"
+                                >
+                                    <i class="ri-book-open-line"></i>
+                                    View details
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
+
