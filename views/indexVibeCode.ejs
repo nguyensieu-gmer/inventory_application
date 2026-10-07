@@ -229,26 +229,25 @@
                                     </h3>
 
 
-                                    <form
-                                        action="/delete/author/<%= author.id %>"
-                                        method="post"
-                                    >
-
-                                        
-
-                                    </form>
+                                    
 
                                 </div>
 
                             </div>
                             <div style="display: flex; justify-content: center; align-items: center;">
-                                <button
-                                    style="background-color: #fff1f2;color: #e11d48; margin-top: 1rem;"
-                                    type="submit"
-                                    onclick="return confirm('Deleting can fail if <%= author.author_name %> has some books in the library')"
-                                >
-                                    Delete
+                                <form
+                                        action="/delete/author/<%= author.id %>"
+                                        method="post"
+                                    >
+                                        <button
+                                            style="background-color: #fff1f2;color: #e11d48; margin-top: 1rem;"
+                                            type="submit"
+                                            onclick="return confirm('Deleting can fail if <%= author.author_name %> has some books in the library')"
+                                        >
+                                            Delete
                                 </button>
+                                </form>
+                                
                             </div>
                             </div>
 
