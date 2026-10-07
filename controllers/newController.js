@@ -1,6 +1,8 @@
 const { body, matchedData, validationResult } = require("express-validator");
 const db = require("../db/queries");
 const rules = require("../stringRules");
+const fs = require("fs");
+const path = require("node:path");
 
 const validated = [
   body("book_name")
@@ -42,10 +44,46 @@ function getCreateBook(req, res) {
   res.render("new");
 }
 
-async function insertInfors(book_name, author_name, genres) {
-  await db.insertNewAuthor(author_name);
+async function insertInfors(
+  book_name,
+  book_url,
+  author_name,
+  author_url,
+  genres,
+) {
+  const authorExisted = await db.insertNewAuthor(author_name, author_url);
+  if (authorExisted === 0) {
+    const authorImgPath = path.join(
+      __dirname,
+      "..",
+      "public",
+      "images",
+      author_url,
+    );
+
+    fs.unlink(authorImgPath, (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
+  }
   const author_id = await db.getAuthorIdByName(author_name);
-  await db.insertNewBook(book_name, author_id);
+  const bookExisted = await db.insertNewBook(book_name, author_id, book_url);
+  if (bookExisted === 0) {
+    const bookImgPath = path.join(
+      __dirname,
+      "..",
+      "public",
+      "images",
+      book_url,
+    );
+
+    fs.unlink(bookImgPath, (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
+  }
   const book_id = await db.getBookIdByName(book_name);
   await Promise.all(genres.map((genre) => db.insertNewGenre(genre)));
   const genre_ids = await db.getGenreIdByName(genres);
@@ -66,8 +104,15 @@ const postCreateBook = [
     const genres = [genre1, genre2, genre3, genre4, genre5].filter(
       (genre) => genre,
     );
-    console.log(req.files);
-    await insertInfors(book_name, author_name, genres);
+    const bookImg =
+      req.files && req.files.book_image
+        ? req.files.book_image[0].filename
+        : "default_book.jpeg";
+    const authorImg =
+      req.files && req.files.author_image
+        ? req.files.author_image[0].filename
+        : "default_author.jpeg";
+    await insertInfors(book_name, bookImg, author_name, authorImg, genres);
     res.redirect("/");
   },
 ];
