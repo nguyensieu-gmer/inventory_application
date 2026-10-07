@@ -97,24 +97,26 @@ async function getBookIdByName(book_name) {
 }
 
 // insert
-async function insertNewBook(book_name, author_id) {
-  await pool.query(
+async function insertNewBook(book_name, author_id, book_url) {
+  const { rowCount } = await pool.query(
     `
-    INSERT INTO books(book_name, author_id) VALUES ($1, $2)
+    INSERT INTO books(book_name, author_id, book_url) VALUES ($1, $2, $3)
     ON CONFLICT (book_name) DO NOTHING
     `,
-    [book_name, author_id],
+    [book_name, author_id, book_url],
   );
+  return rowCount;
 }
 
 async function insertNewAuthor(author_name, author_url) {
-  await pool.query(
+  const { rowCount } = await pool.query(
     `
     INSERT INTO authors(author_name, author_url) VALUES($1, $2)
     ON CONFLICT (author_name) DO NOTHING
     `,
     [author_name, author_url],
   );
+  return rowCount;
 }
 
 async function insertNewGenre(genre_name) {
