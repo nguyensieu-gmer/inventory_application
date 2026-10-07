@@ -41,7 +41,7 @@ const validated = [
 ];
 
 function getCreateBook(req, res) {
-  res.render("new");
+  res.render("newVibeCode");
 }
 
 async function insertInfors(

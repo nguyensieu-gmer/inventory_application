@@ -4,7 +4,7 @@ async function getHome(req, res) {
   const books = await db.getBooks();
   const authors = await db.getAuthors();
 
-  res.render("index", { books, authors });
+  res.render("indexVibeCode", { books, authors });
 }
 
 module.exports = {

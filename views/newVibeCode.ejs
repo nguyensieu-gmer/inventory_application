@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Book</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="new_container">
+      <!-- ================= HEADER ================= -->
+      <div class="new_header">
+        <a href="/" class="back_button">
+          <i class="ri-arrow-left-line"></i> Back to dashboard
+        </a>
+        <h1><i class="ri-book-2-fill"></i> Add New Book</h1>
+        <p>Add a new book, author and genres to your library.</p>
+      </div>
+      <!-- ================= ERROR ================= -->
+      <%- include('partials/errors.ejs') %>
+      <!-- ================= FORM CARD ================= -->
+      <div class="form_card">
+        <div class="form_notice">
+          <i class="ri-information-line"></i>
+          <div>
+            <strong>Keep your information accurate</strong>
+            <p>Carefully validating can help prevent duplicate records.</p>
+          </div>
+        </div>
+        <form
+          action="/new"
+          method="post"
+          enctype="multipart/form-data"
+          class="book_form"
+        >
+          <!-- ================= BOOK ================= -->
+          <section class="form_section">
+            <div class="section_title">
+              <i class="ri-book-open-line"></i>
+              <div>
+                <h2>Book information</h2>
+                <p>Enter information about the book.</p>
+              </div>
+            </div>
+            <div class="form_group">
+              <label for="book_name"> Book name </label>
+              <input
+                type="text"
+                name="book_name"
+                id="book_name"
+                placeholder="Enter the book name"
+              />
+            </div>
+            <div class="form_group">
+              <label for="book_image"> Book image </label>
+              <div class="file_input">
+                <i class="ri-image-line"></i>
+                <input type="file" name="book_image" id="book_image" />
+              </div>
+            </div>
+          </section>
+          <!-- ================= AUTHOR ================= -->
+          <section class="form_section">
+            <div class="section_title">
+              <i class="ri-user-3-line"></i>
+              <div>
+                <h2>Author information</h2>
+                <p>Enter information about the author.</p>
+              </div>
+            </div>
+            <div class="form_group">
+              <label for="author_name"> Author name </label>
+              <input
+                type="text"
+                name="author_name"
+                id="author_name"
+                placeholder="Enter the author name"
+              />
+            </div>
+            <div class="form_group">
+              <label for="author_image"> Author image </label>
+              <div class="file_input">
+                <i class="ri-image-line"></i>
+                <input type="file" name="author_image" id="author_image" />
+              </div>
+            </div>
+          </section>
+          <!-- ================= GENRES ================= -->
+          <section class="form_section">
+            <div class="section_title">
+              <i class="ri-price-tag-3-line"></i>
+              <div>
+                <h2>Genres</h2>
+                <p>Add up to five genres for this book.</p>
+              </div>
+            </div>
+            <div class="genre_grid">
+              <div class="form_group">
+                <label for="genre1"> Genre 1 </label>
+                <input
+                  type="text"
+                  name="genre1"
+                  id="genre1"
+                  placeholder="e.g. Fantasy"
+                />
+              </div>
+              <div class="form_group">
+                <label for="genre2"> Genre 2 </label>
+                <input
+                  type="text"
+                  name="genre2"
+                  id="genre2"
+                  placeholder="e.g. Adventure"
+                />
+              </div>
+              <div class="form_group">
+                <label for="genre3"> Genre 3 </label>
+                <input
+                  type="text"
+                  name="genre3"
+                  id="genre3"
+                  placeholder="e.g. Mystery"
+                />
+              </div>
+              <div class="form_group">
+                <label for="genre4"> Genre 4 </label>
+                <input
+                  type="text"
+                  name="genre4"
+                  id="genre4"
+                  placeholder="e.g. Drama"
+                />
+              </div>
+              <div class="form_group">
+                <label for="genre5"> Genre 5 </label>
+                <input
+                  type="text"
+                  name="genre5"
+                  id="genre5"
+                  placeholder="e.g. Romance"
+                />
+              </div>
+            </div>
+          </section>
+          <!-- ================= SUBMIT ================= -->
+          <div class="form_actions">
+            <a href="/" class="cancel_button"> Cancel </a>
+            <button type="submit" class="submit_button">
+              <i class="ri-add-line"></i> Add book
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
