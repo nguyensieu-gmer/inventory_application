@@ -1,6 +1,4 @@
 const { Client } = require("pg");
-const { loadEnvFile } = require("node:process");
-loadEnvFile();
 
 const BOOKS_SQL = `
 CREATE TABLE IF NOT EXISTS books(

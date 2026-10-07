@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("node:path");
 const app = express();
-const { loadEnvFile, title } = require("node:process");
 const indexController = require("./controllers/indexController");
 const detailRoute = require("./routes/detailRoute");
 const searchRoute = require("./routes/searchRoute");
@@ -10,7 +9,6 @@ const updateRouter = require("./routes/updateRouter");
 const { copyFileSync } = require("node:fs");
 const deleteRouter = require("./routes/deleteRouter");
 const assestsPath = path.join(__dirname, "public");
-loadEnvFile();
 
 app.use(express.static(assestsPath));
 app.set("views", path.join(__dirname, "views"));
