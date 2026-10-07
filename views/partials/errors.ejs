@@ -1,7 +1,29 @@
-<% if (locals.errors){%>
+
+<% if (locals.errors) { %>
+
+  <div class="validation_errors">
+
+    <div class="validation_errors_header">
+      <i class="ri-error-warning-line"></i>
+
+      <div>
+        <h3>Please check the following</h3>
+        <p>Some information needs your attention.</p>
+      </div>
+    </div>
+
+
     <ul>
-        <% errors.forEach(error => {%>
-            <li><%= error.msg%></li>
-        <% })%>
+      <% errors.forEach(error => { %>
+
+        <li>
+          <i class="ri-close-circle-line"></i>
+          <span><%= error.msg %></span>
+        </li>
+
+      <% }) %>
     </ul>
-<%}%> 
+
+  </div>
+
+<% } %>

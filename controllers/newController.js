@@ -97,7 +97,7 @@ const postCreateBook = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("new", { errors: errors.array() });
+      return res.status(400).render("newVibeCode", { errors: errors.array() });
     }
     const { book_name, author_name, genre1, genre2, genre3, genre4, genre5 } =
       matchedData(req);

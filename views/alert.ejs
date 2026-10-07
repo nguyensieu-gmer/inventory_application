@@ -1,6 +1,42 @@
-<div>
-  <h1><%= title%></h1>
-  <h2><em><%= message%></em></h2>
-  <br />
-  <a href="/">Go home</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= title %></title>
+
+    <link rel="stylesheet" href="/styles.css" />
+
+    <!-- Remix Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="error_page">
+      <div class="error_card">
+        <div class="error_icon">
+          <i class="ri-error-warning-line"></i>
+        </div>
+
+        <span class="error_label"> ERROR </span>
+
+        <h1><%= title %></h1>
+
+        <div class="error_message">
+          <i class="ri-information-line"></i>
+
+          <p><%= message %></p>
+        </div>
+
+        <a href="/" class="error_home_button">
+          <i class="ri-home-line"></i>
+          Go home
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
