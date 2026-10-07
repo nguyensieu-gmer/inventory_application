@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("node:path");
 const app = express();
-const { loadEnvFile } = require("node:process");
+const { loadEnvFile, title } = require("node:process");
 const indexController = require("./controllers/indexController");
 const detailRoute = require("./routes/detailRoute");
 const searchRoute = require("./routes/searchRoute");
@@ -30,6 +30,15 @@ app.use((err, req, res, next) => {
     res
       .status(err.statusCode)
       .render("alert", { title: "Updating fail", message: err.message });
+  }
+});
+
+app.use((err, req, res, next) => {
+  if (err) {
+    console.error(err);
+    res
+      .status(err.statusCode || err.status || 500)
+      .render("alert", { title: err.name || "Error", messages: err.message });
   }
 });
 
