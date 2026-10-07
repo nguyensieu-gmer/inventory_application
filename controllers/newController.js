@@ -52,7 +52,7 @@ async function insertInfors(
   genres,
 ) {
   const authorExisted = await db.insertNewAuthor(author_name, author_url);
-  if (authorExisted === 0) {
+  if (authorExisted === 0 && author_url !== "default_author.jpeg") {
     const authorImgPath = path.join(
       __dirname,
       "..",
@@ -69,7 +69,7 @@ async function insertInfors(
   }
   const author_id = await db.getAuthorIdByName(author_name);
   const bookExisted = await db.insertNewBook(book_name, author_id, book_url);
-  if (bookExisted === 0) {
+  if (bookExisted === 0 && book_url !== "default_book.jpeg") {
     const bookImgPath = path.join(
       __dirname,
       "..",
