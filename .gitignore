@@ -1,3 +1,10 @@
 node_modules/
 .env
 .vscode
+public/images/*
+!public/images/default_author.jpeg
+!public/images/default_book.jpeg
+!public/images/harry_potter.avif
+!public/images/jk_rowling.jpeg
+!public/images/mark_twain.jpeg
+!public/images/tom_sawyer.jpeg
