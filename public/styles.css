@@ -964,3 +964,658 @@ a:focus-visible {
     min-width: 8rem;
   }
 }
+
+/* =========================================
+   UPDATE BOOK PAGE
+========================================= */
+
+.update_page {
+  min-height: 100vh;
+  padding: 2rem 3rem;
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.update_header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.update_header h1 {
+  font-size: var(--bigger-font-size);
+  margin-bottom: 0.25rem;
+}
+
+.update_header p {
+  color: var(--color-text-secondary);
+}
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back_button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.7rem 1rem;
+
+  background-color: var(--color-text-main);
+  color: white;
+
+  border-radius: 8px;
+
+  font-weight: var(--font-semi-bold);
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.back_button i {
+  font-size: 1.2rem;
+}
+
+.back_button:hover {
+  background-color: var(--color-text-secondary);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   FORM CONTAINER
+========================================= */
+
+.update_content {
+  max-width: 55rem;
+  margin: 0 auto;
+}
+
+.update_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  background-color: var(--color-container);
+
+  padding: 2rem;
+
+  border-radius: 12px;
+
+  box-shadow: 2px 2px 10px 4px #d1670b30;
+}
+
+/* =========================================
+   NOTICE
+========================================= */
+
+.form_notice {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  padding: 1rem 1.2rem;
+
+  border-radius: 8px;
+
+  background-color: #f5eadc;
+
+  color: var(--color-text-secondary);
+
+  border-left: 4px solid var(--color-accent);
+}
+
+.form_notice i {
+  font-size: 1.4rem;
+  color: var(--color-accent);
+}
+
+.form_notice p {
+  font-size: var(--small-font-size);
+}
+
+/* =========================================
+   FORM SECTION
+========================================= */
+
+.form_section {
+  padding: 1.5rem;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: 10px;
+
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Section title */
+
+.section_title {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.section_title > i {
+  font-size: 1.7rem;
+  color: var(--color-accent);
+}
+
+.section_title h2 {
+  font-size: var(--h2-font-size);
+  margin-bottom: 0.2rem;
+}
+
+.section_title p {
+  color: var(--color-text-secondary);
+  font-size: var(--small-font-size);
+}
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form_group label,
+.genre_row label {
+  font-weight: var(--font-semi-bold);
+  color: var(--color-text-secondary);
+}
+
+.form_group input,
+.genre_row input {
+  width: 100%;
+
+  padding: 0.8rem 1rem;
+
+  border: 2px solid var(--color-border);
+
+  border-radius: 7px;
+
+  outline: none;
+
+  background-color: #faf8f4;
+
+  color: var(--color-text-main);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form_group input:focus,
+.genre_row input:focus {
+  border-color: var(--color-accent);
+
+  box-shadow: 0 0 0 3px rgba(183, 126, 75, 0.15);
+}
+
+/* =========================================
+   GENRES
+========================================= */
+
+.genre_hint {
+  margin-bottom: 1rem;
+
+  font-size: var(--small-font-size);
+
+  color: var(--color-text-secondary);
+}
+
+.genre_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.genre_row {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.form_actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  padding-top: 0.5rem;
+}
+
+.cancel_button,
+.update_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  padding: 0.75rem 1.2rem;
+
+  border-radius: 7px;
+
+  font-weight: var(--font-semi-bold);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/* Cancel */
+
+.cancel_button {
+  background-color: transparent;
+
+  color: var(--color-text-secondary);
+
+  border: 2px solid var(--color-border);
+}
+
+.cancel_button:hover {
+  background-color: var(--color-border);
+
+  transform: translateY(-2px);
+}
+
+/* Update */
+
+.update_button {
+  border: none;
+
+  background-color: var(--color-text-main);
+
+  color: white;
+}
+
+.update_button:hover {
+  background-color: var(--color-accent-hover);
+
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+  .update_page {
+    padding: 1.5rem;
+  }
+
+  .update_header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .update_form {
+    padding: 1.2rem;
+  }
+
+  .form_section {
+    padding: 1rem;
+  }
+
+  .genre_row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .form_actions {
+    flex-direction: column-reverse;
+  }
+
+  .cancel_button,
+  .update_button {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   BOOK DETAIL PAGE
+========================================= */
+
+.detail_page {
+  min-height: 100vh;
+
+  padding: 2rem 3rem;
+
+  background-color: var(--color-background);
+
+  color: var(--color-text-main);
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.detail_header {
+  display: flex;
+  align-items: center;
+
+  gap: 2rem;
+
+  margin-bottom: 2rem;
+}
+
+.detail_header h1 {
+  font-size: var(--bigger-font-size);
+
+  margin-bottom: 0.25rem;
+}
+
+.detail_header p {
+  color: var(--color-text-secondary);
+}
+
+/* =========================================
+   DETAIL CARD
+========================================= */
+
+.detail_card {
+  display: grid;
+
+  grid-template-columns: minmax(18rem, 30rem) 1fr;
+
+  max-width: 70rem;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  background-color: var(--color-container);
+
+  border-radius: 14px;
+
+  box-shadow: 2px 2px 12px 5px #d1670b35;
+}
+
+/* =========================================
+   BOOK IMAGE
+========================================= */
+
+.detail_book_image {
+  min-height: 35rem;
+
+  overflow: hidden;
+}
+
+.detail_book_image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.3s ease;
+}
+
+.detail_card:hover .detail_book_image img {
+  transform: scale(1.02);
+}
+
+/* =========================================
+   INFORMATION
+========================================= */
+
+.detail_information {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 3rem;
+}
+
+/* Small label */
+
+.detail_label {
+  display: inline-block;
+
+  width: fit-content;
+
+  margin-bottom: 0.5rem;
+
+  color: var(--color-accent);
+
+  font-size: var(--small-font-size);
+
+  font-weight: var(--font-bold);
+
+  letter-spacing: 0.15rem;
+}
+
+/* Book name */
+
+.detail_information > h2 {
+  font-size: var(--biggest-font-size);
+
+  line-height: 1.15;
+
+  margin-bottom: 2.5rem;
+}
+
+/* =========================================
+   AUTHOR
+========================================= */
+
+.detail_author {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  padding-bottom: 2rem;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail_author img {
+  width: 4.5rem;
+  height: 4.5rem;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  box-shadow: 1px 1px 5px 2px #88888855;
+}
+
+.detail_author span {
+  display: block;
+
+  margin-bottom: 0.2rem;
+
+  color: var(--color-text-accent);
+
+  font-size: var(--small-font-size);
+}
+
+.detail_author p {
+  font-size: var(--h2-font-size);
+
+  font-weight: var(--font-semi-bold);
+
+  color: var(--color-text-main);
+}
+
+/* =========================================
+   GENRES
+========================================= */
+
+.detail_genres {
+  margin-top: 2rem;
+}
+
+.genre_heading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  margin-bottom: 1rem;
+}
+
+.genre_heading i {
+  color: var(--color-accent);
+
+  font-size: 1.3rem;
+}
+
+.genre_heading h3 {
+  font-size: var(--h3-font-size);
+}
+
+/* Genre tags */
+
+.genre_tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.6rem;
+}
+
+.genre_tag {
+  padding: 0.45rem 0.8rem;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: 999px;
+
+  background-color: #f5eadc;
+
+  color: var(--color-text-secondary);
+
+  font-size: var(--small-font-size);
+
+  font-weight: var(--font-semi-bold);
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.detail_actions {
+  display: flex;
+
+  gap: 1rem;
+
+  margin-top: auto;
+
+  padding-top: 3rem;
+}
+
+.update_detail_button,
+.back_detail_button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.5rem;
+
+  padding: 0.75rem 1.2rem;
+
+  border-radius: 7px;
+
+  font-weight: var(--font-semi-bold);
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/* Update */
+
+.update_detail_button {
+  background-color: var(--color-text-main);
+
+  color: white;
+}
+
+.update_detail_button:hover {
+  background-color: var(--color-accent-hover);
+
+  transform: translateY(-2px);
+}
+
+/* Back */
+
+.back_detail_button {
+  border: 2px solid var(--color-border);
+
+  color: var(--color-text-secondary);
+}
+
+.back_detail_button:hover {
+  background-color: var(--color-border);
+
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+  .detail_page {
+    padding: 1.5rem;
+  }
+
+  .detail_header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 1rem;
+  }
+
+  .detail_card {
+    grid-template-columns: 1fr;
+  }
+
+  .detail_book_image {
+    min-height: 25rem;
+
+    max-height: 35rem;
+  }
+
+  .detail_information {
+    padding: 2rem;
+  }
+
+  .detail_information > h2 {
+    font-size: var(--bigger-font-size);
+  }
+}
+
+@media (max-width: 500px) {
+  .detail_actions {
+    flex-direction: column;
+  }
+
+  .update_detail_button,
+  .back_detail_button {
+    width: 100%;
+  }
+}

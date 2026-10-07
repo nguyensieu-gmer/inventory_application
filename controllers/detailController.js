@@ -5,9 +5,8 @@ async function getDetailOfBook(req, res) {
   const [infor] = await db.getBookAndAuthor(bookId);
   const listOfGenre = await db.getGenreOfBook(bookId);
 
-  res.render("detail", {
-    bookName: infor.book_name,
-    authorName: infor.author_name,
+  res.render("detailVibeCode", {
+    infor,
     listOfGenre,
   });
 }

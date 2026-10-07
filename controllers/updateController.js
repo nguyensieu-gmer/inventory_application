@@ -34,7 +34,7 @@ async function getUpdateOfBook(req, res) {
   const [infor] = await db.getBookAndAuthor(bookId);
   const listOfGenre = await db.getGenreOfBook(bookId);
 
-  res.render("update", {
+  res.render("updateVibeCode", {
     bookName: infor.book_name,
     authorName: infor.author_name,
     book_id: infor.book_id,

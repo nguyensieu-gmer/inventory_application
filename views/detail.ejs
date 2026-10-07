@@ -1,5 +1,9 @@
 <div>
-  <h1><%= bookName%> '<i><%= authorName%></i>'</h1>
+  <h1><p><%= infor.book_name%></p> 
+    <img src="/images/<%= infor.book_url%>" alt="">
+    <p><%= infor.author_name%></p>
+    <img src="/images/<%= infor.author_url%>" alt="">
+  </h1>
   <h2>Genres</h2>
   <ul>
     <% listOfGenre.map(genre => {%>

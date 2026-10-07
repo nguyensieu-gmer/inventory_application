@@ -29,7 +29,7 @@ async function getGenre() {
 async function getBookAndAuthor(id) {
   const { rows } = await pool.query(
     `
-    SELECT books.id AS book_id, authors.id AS author_id, author_name, book_name
+    SELECT books.id AS book_id, authors.id AS author_id, author_name, book_name, book_url, author_url
     FROM books JOIN authors ON books.author_id = authors.id
     WHERE books.id = $1
     `,

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Update Book</title>
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- Remix Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+
+  <div class="update_page">
+
+    <!-- Header -->
+    <header class="update_header">
+
+      <a href="/" class="back_button">
+        <i class="ri-arrow-left-line"></i>
+        Go home
+      </a>
+
+      <div>
+        <h1>Update Book</h1>
+        <p>Edit the information of your book.</p>
+      </div>
+
+    </header>
+
+
+    <!-- Error messages -->
+    <%- include('partials/errors.ejs') %>
+
+
+    <!-- Update form -->
+    <main class="update_content">
+
+      <form action="/update" method="post" class="update_form">
+
+        <!-- Notice -->
+        <div class="form_notice">
+          <i class="ri-information-line"></i>
+
+          <p>
+            Carefully validating can help prevent duplicate records.
+          </p>
+        </div>
+
+
+        <!-- Book information -->
+        <section class="form_section">
+
+          <div class="section_title">
+            <i class="ri-book-2-line"></i>
+
+            <div>
+              <h2>Book information</h2>
+              <p>Update the name of the book.</p>
+            </div>
+          </div>
+
+
+          <div class="form_group">
+
+            <label for="book_name">
+              Book name
+            </label>
+
+            <input
+              type="text"
+              name="book_name"
+              id="book_name"
+              value="<%= bookName %>"
+            />
+
+          </div>
+
+          <input
+            type="hidden"
+            name="book_id"
+            value="<%= book_id %>"
+          />
+
+        </section>
+
+
+        <!-- Author information -->
+        <section class="form_section">
+
+          <div class="section_title">
+            <i class="ri-user-3-line"></i>
+
+            <div>
+              <h2>Author information</h2>
+              <p>Update the author associated with this book.</p>
+            </div>
+          </div>
+
+
+          <div class="form_group">
+
+            <label for="author_name">
+              Author name
+            </label>
+
+            <input
+              type="text"
+              name="author_name"
+              id="author_name"
+              value="<%= authorName %>"
+            />
+
+          </div>
+
+          <input
+            type="hidden"
+            name="author_id"
+            value="<%= author_id %>"
+          />
+
+        </section>
+
+
+        <!-- Genres -->
+        <section class="form_section">
+
+          <div class="section_title">
+            <i class="ri-price-tag-3-line"></i>
+
+            <div>
+              <h2>Genres</h2>
+              <p>
+                Update the genres associated with this book.
+              </p>
+            </div>
+          </div>
+
+
+          <p class="genre_hint">
+            Genres are entered individually.
+          </p>
+
+
+          <div class="genre_list">
+
+            <% listOfGenre.forEach((genre, idx) => { %>
+
+              <div class="genre_row">
+
+                <label for="<%= `genre${idx + 1}` %>">
+                  Genre <%= idx + 1 %>
+                </label>
+
+                <input
+                  type="text"
+                  name="<%= `genre${idx + 1}` %>"
+                  id="<%= `genre${idx + 1}` %>"
+                  value="<%= genre.genre_name %>"
+                />
+
+                <input
+                  type="hidden"
+                  name="<%= `genre${idx + 1}_id` %>"
+                  value="<%= genre.id %>"
+                />
+
+              </div>
+
+            <% }) %>
+
+          </div>
+
+
+          <input
+            type="hidden"
+            name="quantityOfGenres"
+            value="<%= listOfGenre.length %>"
+          />
+
+        </section>
+
+
+        <!-- Actions -->
+        <div class="form_actions">
+
+          <a href="/" class="cancel_button">
+            Cancel
+          </a>
+
+          <button type="submit" class="update_button">
+            <i class="ri-save-line"></i>
+            Update book
+          </button>
+
+        </div>
+
+      </form>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

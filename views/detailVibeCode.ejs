@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= infor.book_name %></title>
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- Remix Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+
+  <div class="detail_page">
+
+    <!-- Header -->
+    <header class="detail_header">
+
+      <a href="/" class="back_button">
+        <i class="ri-arrow-left-line"></i>
+        Go home
+      </a>
+
+      <div>
+        <h1>Book Details</h1>
+        <p>Information about this book.</p>
+      </div>
+
+    </header>
+
+
+    <!-- Book detail card -->
+    <main class="detail_card">
+
+      <!-- Book cover -->
+      <div class="detail_book_image">
+        <img
+          src="/images/<%= infor.book_url %>"
+          alt="<%= infor.book_name %>"
+        />
+      </div>
+
+
+      <!-- Information -->
+      <div class="detail_information">
+
+        <span class="detail_label">
+          BOOK
+        </span>
+
+        <h2>
+          <%= infor.book_name %>
+        </h2>
+
+
+        <!-- Author -->
+        <div class="detail_author">
+
+          <img
+            src="/images/<%= infor.author_url %>"
+            alt="<%= infor.author_name %>"
+          />
+
+          <div>
+            <span>Author</span>
+            <p>
+              <%= infor.author_name %>
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- Genres -->
+        <div class="detail_genres">
+
+          <div class="genre_heading">
+            <i class="ri-price-tag-3-line"></i>
+            <h3>Genres</h3>
+          </div>
+
+          <div class="genre_tags">
+
+            <% listOfGenre.map(genre => { %>
+
+              <span class="genre_tag">
+                <%= genre.genre_name %>
+              </span>
+
+            <% }) %>
+
+          </div>
+
+        </div>
+
+
+        <!-- Actions -->
+        <div class="detail_actions">
+
+          <a href="/" class="back_detail_button">
+            Back
+          </a>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
+
