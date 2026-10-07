@@ -12,13 +12,21 @@
       <%- include('partials/errors.ejs')%>
       <br />
       <em>Carefully validating can help prevent duplicate records</em>
-      <form action="/new" method="post">
+      <form action="/new" method="post" enctype="multipart/form-data">
         <label for="book_name">Book: </label>
         <input type="text" name="book_name" id="book_name" />
         <br />
+        <p></p>
+        <label for="book_image">Book image:</label>
+        <br />
+        <input type="file" name="book_image" id="book_image" />
         <br />
         <label for="author_name">Author: </label>
         <input type="text" name="author_name" id="author_name" />
+        <br />
+        <label for="author_image">Author image</label>
+        <br />
+        <input type="file" name="author_image" id="author_image" />
         <br />
         <p>genres are seperated by empty space like: humor horror</p>
         <label for="genre1">Genre 1: </label>
