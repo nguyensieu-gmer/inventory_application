@@ -6,14 +6,16 @@ const BOOKS_SQL = `
 CREATE TABLE IF NOT EXISTS books(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     book_name VARCHAR(255) UNIQUE,
-    author_id INTEGER
+    author_id INTEGER,
+    book_url VARCHAR(255)
 )
 `;
 
 const AUTHOR_SQL = `
 CREATE TABLE IF NOT EXISTS authors(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    author_name VARCHAR(255) UNIQUE
+    author_name VARCHAR(255) UNIQUE,
+    author_url VARCHAR(255) 
 )
 `;
 
@@ -32,13 +34,15 @@ CREATE TABLE IF NOT EXISTS books_genres(
 `;
 
 const INSERT_BOOKS = `
-INSERT INTO books(book_name, author_id) VALUES
-('Hary Poter', 1), ('The adventure of Tom Sawyer', 2)
+INSERT INTO books(book_name, author_id, book_url) VALUES
+('Hary Poter', 1, 'harry_potter.avif'), 
+('The adventure of Tom Sawyer', 2, 'tom_sawyer.jpeg')
 `;
 
 const INSERT_AUTHOR = `
-INSERT INTO authors(author_name) VALUES
-('JK Rowling'), ('Mark Twain')
+INSERT INTO authors(author_name, author_url) VALUES
+('JK Rowling', 'jk_rowling.jpeg'), 
+('Mark Twain', 'mark_twain.jpeg')
 `;
 
 const INSERT_GENRE = `
